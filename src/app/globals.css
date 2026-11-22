@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   Design tokens. Tailwind v4 turns every variable below into utility
+   classes automatically, e.g. bg-ivory, text-burgundy, font-script.
+------------------------------------------------------------------- */
+@theme inline {
+  /* Backgrounds (warm paper tones) */
+  --color-ivory: #faf6ef;
+  --color-cream: #f2eadc;
+
+  /* Primary: deep burgundy */
+  --color-burgundy: #5e1f2b;
+  --color-burgundy-deep: #3f1219;
+
+  /* Accents */
+  --color-rose: #c98c8f;
+  --color-rose-soft: #ead3cf;
+  --color-sage: #8a9a82;
+  --color-sage-deep: #5f6f58;
+
+  /* Gold: used sparingly, only for fine lines and small details */
+  --color-gold: #b8975a;
+
+  /* Text */
+  --color-ink: #2b1a1d;
+  --color-ink-soft: #6b5457;
+
+  /* Fonts (the variables on the right come from src/lib/fonts.ts) */
+  --font-script: var(--font-display), serif;
+  --font-text: var(--font-body), serif;
+  --font-roman: var(--font-latin), serif;
+}
+
+/* ------------------------------------------------------------------
+   Base styles
+------------------------------------------------------------------- */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    min-height: 100dvh;
+    overflow-x: hidden;
+    background-color: var(--color-ivory);
+    color: var(--color-ink);
+    font-family: var(--font-body), serif;
+    line-height: 1.9;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Balanced line breaks make Arabic headings look much more elegant */
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  ::selection {
+    background-color: var(--color-rose-soft);
+    color: var(--color-burgundy-deep);
+  }
+
+  /* Visible keyboard focus, styled to match the palette */
+  :focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 3px;
+  }
+
+  /* Respect users who prefer less motion */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
